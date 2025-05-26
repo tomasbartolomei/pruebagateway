@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Probador de API</title>
+</head>
+<body>
+  <h2>Enviar solicitud a Lambda</h2>
+
+  <form id="apiForm">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required />
+    <button type="submit">Enviar</button>
+  </form>
+
+  <pre id="respuesta"></pre>
+
+  <script>
+    const form = document.getElementById("apiForm");
+    const respuesta = document.getElementById("respuesta");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+
+      try {
+        const res = await fetch("https://a3zjjj2zvh.execute-api.eu-north-1.amazonaws.com/default", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nombre })
+        });
+
+        const data = await res.json();
+        respuesta.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        respuesta.textContent = "Error: " + err;
+      }
+    });
+  </script>
+</body>
+</html>
