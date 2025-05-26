@@ -23,7 +23,7 @@
       const nombre = document.getElementById("nombre").value;
 
       try {
-        const res = await fetch("arn:aws:apigateway:eu-north-1::/apis/a3zjjj2zvh/routes/afjr1vd", {
+        const res = await fetch("https://a3zjjj2zvh.execute-api.eu-north-1.amazonaws.com/", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ nombre })
